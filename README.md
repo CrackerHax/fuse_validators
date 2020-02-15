@@ -25,3 +25,7 @@ Leave the number after the colon as it is, the ports before the colons need to b
         {"base":"172.17.0.0/16","size":24},
         {"base":"172.90.0.0/16","size":24}
     ]
+    
+And then 
+
+    sudo service docker restart
