@@ -6,7 +6,7 @@ services:
     environment: ['RABBITMQ_NODENAME=node@rabbit']
     hostname: rabbit
     image: rabbitmq:3
-    container_name: fuseoracle-rabbitmq
+    container_name: fuseoracle-rabbitmq$COMPOSE_PROJECT_NAME
     networks:
       - net_rabbit_bridge_request
       - net_rabbit_bridge_collected
@@ -29,7 +29,7 @@ services:
     command: [redis-server, --appendonly, 'yes']
     hostname: redis
     image: redis:4
-    container_name: fuseoracle-redis
+    container_name: fuseoracle-redis$COMPOSE_PROJECT_NAME
     networks:
       - net_db_bridge_request
       - net_db_bridge_collected
@@ -50,7 +50,7 @@ services:
     cpus: 0.1
     mem_limit: 500m
     image: fusenet/native-to-erc20-oracle:2.0.2
-    container_name: fuseoracle-signature-request
+    container_name: fuseoracle-signature-request$COMPOSE_PROJECT_NAME
     env_file: ./.env
     environment:
       - NPM_SCRIPT=watcher:signature-request
@@ -70,7 +70,7 @@ services:
     cpus: 0.1
     mem_limit: 500m
     image: fusenet/native-to-erc20-oracle:2.0.2
-    container_name: fuseoracle-collected-signatures
+    container_name: fuseoracle-collected-signatures$COMPOSE_PROJECT_NAME
     env_file: ./.env
     environment:
       - NPM_SCRIPT=watcher:collected-signatures
@@ -90,7 +90,7 @@ services:
     cpus: 0.1
     mem_limit: 500m
     image: fusenet/native-to-erc20-oracle:2.0.2
-    container_name: fuseoracle-affirmation-request
+    container_name: fuseoracle-affirmation-request$COMPOSE_PROJECT_NAME
     env_file: ./.env
     environment:
       - NPM_SCRIPT=watcher:affirmation-request
@@ -110,7 +110,7 @@ services:
     cpus: 0.1
     mem_limit: 500m
     image: fusenet/native-to-erc20-oracle:2.0.2
-    container_name: fuseoracle-initiate-change
+    container_name: fuseoracle-initiate-change$COMPOSE_PROJECT_NAME
     env_file: ./.env
     environment:
       - NPM_SCRIPT=watcher:initiate-change
@@ -130,7 +130,7 @@ services:
     cpus: 0.1
     mem_limit: 500m
     image: fusenet/native-to-erc20-oracle:2.0.2
-    container_name: fuseoracle-rewarded-on-cycle
+    container_name: fuseoracle-rewarded-on-cycle$COMPOSE_PROJECT_NAME
     env_file: ./.env
     environment:
       - NPM_SCRIPT=watcher:rewarded-on-cycle
@@ -150,7 +150,7 @@ services:
     cpus: 0.1
     mem_limit: 500m
     image: fusenet/native-to-erc20-oracle:2.0.2
-    container_name: fuseoracle-sender-home
+    container_name: fuseoracle-sender-home$COMPOSE_PROJECT_NAME
     env_file: ./.env
     environment:
       - NPM_SCRIPT=sender:home
@@ -170,7 +170,7 @@ services:
     cpus: 0.1
     mem_limit: 500m
     image: fusenet/native-to-erc20-oracle:2.0.2
-    container_name: fuseoracle-sender-foreign
+    container_name: fuseoracle-sender-foreign$COMPOSE_PROJECT_NAME
     env_file: ./.env
     environment:
       - NPM_SCRIPT=sender:foreign

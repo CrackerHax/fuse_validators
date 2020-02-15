@@ -1,12 +1,11 @@
 #!/bin/bash
 
 set -e
-
 ENV_FILE=".env"
 DOCKER_IMAGE_PARITY="fusenet/node"
 DOCKER_CONTAINER_PARITY="fusenet"
 DOCKER_IMAGE_APP="fusenet/validator-app"
-DOCKER_CONTAINER_APP="fuseapp"
+DOCKER_CONTAINER_APP="fuseapp:"
 DOCKER_IMAGE_NETSTAT="fusenet/netstat"
 DOCKER_CONTAINER_NETSTAT="fusenetstat"
 DOCKER_COMPOSE_ORACLE="https://raw.githubusercontent.com/fuseio/fuse-bridge/master/native-to-erc20/oracle/docker-compose.keystore.yml"
@@ -30,6 +29,13 @@ declare -a VALID_ROLE_LIST=(
   validator
   explorer
 )
+
+function containerNames {
+DOCKER_CONTAINER_PARITY="fusenet_$COMPOSE_PROJECT_NAME"
+DOCKER_CONTAINER_APP="fuseapp_$COMPOSE_PROJECT_NAME"
+DOCKER_CONTAINER_NETSTAT="fusenetstat_$COMPOSE_PROJECT_NAME"
+DOCKER_CONTAINER_ORACLE="fuseoracle_$COMPOSE_PROJECT_NAME"
+}
 
 function sanityChecks {
   echo -e "\nSanity checks..."
@@ -107,8 +113,8 @@ function setup {
     $PERMISSION_PREFIX docker pull $DOCKER_IMAGE_APP
     $PERMISSION_PREFIX docker pull $DOCKER_IMAGE_ORACLE
 
-    echo -e "\nDownload oracle docker-compose.yml"
-    wget -O docker-compose.yml $DOCKER_COMPOSE_ORACLE
+#    echo -e "\nDownload oracle docker-compose.yml"
+#    wget -O docker-compose.yml $DOCKER_COMPOSE_ORACLE
   fi
 
   # Create directories.
@@ -281,9 +287,9 @@ function run {
         --name $DOCKER_CONTAINER_PARITY \
         --volume $DATABASE_DIR:/data \
         --volume $CONFIG_DIR:/config/custom \
-        -p 30303:30300/tcp \
-        -p 30303:30300/udp \
-        -p 8545:8545 \
+        -p 30304:30300/tcp \
+        -p 30304:30300/udp \
+        -p 8546:8545 \
         --restart=always \
         $DOCKER_IMAGE_PARITY \
         --role validator \
@@ -344,5 +350,6 @@ function run {
 # Go :)
 sanityChecks
 parseArguments
+containerNames
 setup
 run
