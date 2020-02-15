@@ -21,11 +21,13 @@ Leave the number after the colon as it is, the ports before the colons need to b
 If you run more than 2 validators you might run out of dockers networks. To make your network pool larger create /etc/docker/daemon.json with this in it:
 
 ```
+    {
     "default-address-pools":
     [
         {"base":"172.17.0.0/16","size":24},
         {"base":"172.90.0.0/16","size":24}
     ]
+    }
 ``` 
 And then 
     
