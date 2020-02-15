@@ -10,6 +10,7 @@ To use:
 - In quickstart.sh toward the bottom you will need to edit your port numbers so each of your validators are using different outside ports.
 
 Towards the bottom after '"validator")'....
+
     -p 30305:30300/tcp \
     -p 30305:30300/udp \
     -p 8547:8545 \
