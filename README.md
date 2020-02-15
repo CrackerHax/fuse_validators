@@ -15,7 +15,7 @@ Towards the bottom after '"validator")'....
     -p 30305:30300/udp \
     -p 8547:8545 \
 ```
-Leave the number after the colon as it is, the ports before the colons need to be uniquye to your validator
+Leave the number after the colon as it is, the ports before the colons need to be unique to your validator
 
 
 If you run more than 2 validators you might run out of dockers networks. To make your network pull larger create /etc/docker/daemon.json with this in it:
