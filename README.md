@@ -18,7 +18,7 @@ Towards the bottom after '"validator")'....
 Leave the number after the colon as it is, the ports before the colons need to be unique to your validator
 
 
-If you run more than 2 validators you might run out of dockers networks. To make your network pull larger create /etc/docker/daemon.json with this in it:
+If you run more than 2 validators you might run out of dockers networks. To make your network pool larger create /etc/docker/daemon.json with this in it:
 
 ```
     "default-address-pools":
