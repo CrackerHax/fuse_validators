@@ -2,7 +2,7 @@
 Run multiple validator nodes on a single host
 
 
-This will allow you to run multiple validator nodes on a single machine.
+This will allow you to run multiple validator nodes on a single machine. Each validator will needs its own directory with these files in it.
 
 To use:
 - Edit .env file. Each validator will need its own unique name, and add your infura API key
@@ -17,6 +17,10 @@ Towards the bottom after '"validator")'....
 ```
 Leave the number after the colon as it is, the ports before the colons need to be unique to your validator
 
+Then run quickstart
+```
+./quickstart.sh
+```
 
 If you run more than 2 validators you might run out of dockers networks. To make your network pool larger create /etc/docker/daemon.json with this in it:
 
@@ -34,3 +38,4 @@ And then
 ```
     sudo service docker restart
 ```
+
